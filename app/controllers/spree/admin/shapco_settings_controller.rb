@@ -18,7 +18,8 @@ module Spree
           Spree::Config[name] = value if Spree::Config.has_preference? name
         end
 
-        @error = SpreeShapco.test
+        SpreeShapco.reset!
+        @error = SpreeShapco.client
 
         if @error
           render :edit

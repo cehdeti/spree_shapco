@@ -7,6 +7,10 @@ module SpreeShapco
       @client ||= build_client
     end
 
+    def reset!
+      @client = nil
+    end
+
     private
 
     def build_client
