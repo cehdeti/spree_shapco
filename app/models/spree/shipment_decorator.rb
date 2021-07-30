@@ -13,6 +13,28 @@ Spree::Shipment.class_eval do
   end
 
   def as_shapco
+    {
+      product_details: {
+        items: {
+            item: manifest.map do |item|
+
+              sku = item.line_item.variant.sku
+
+              if item.part
+                sku = item.variant.sku
+              end
+
+              {
+                products_name: item.name,
+                products_desc: item.description,
+                products_sku: sku,
+                products_price: item.line_item.price,
+                products_quantity: item.quantity
+              }
+            end
+          }
+      }
+    }
   end
 
   def send_to_shapco
