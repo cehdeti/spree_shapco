@@ -1,0 +1,13 @@
+en:
+  spree:
+    shapco: Shapco
+
+    shapco_create: Create orders in Shapco
+
+    shapco_api_error: "Could not connect to Shapco API. Error: %{message}"
+
+    shapco_settings: Shapco Settings
+    shapco_api_credentials: API Credentials
+    shapco_username: Username
+    shapco_password: Password
+    shapco_subscriber_id: Subscriber ID

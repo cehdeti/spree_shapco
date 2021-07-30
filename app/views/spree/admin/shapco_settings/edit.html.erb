@@ -1,0 +1,58 @@
+<%= render 'spree/admin/shared/sub_menu/configuration' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:shapco_settings) %>
+<% end %>
+
+<div id="preferences" data-hook>
+  <%- if @error %>
+    <div class="alert alert-danger">
+      <%= Spree.t(:shapco_api_error, message: @error.message) %>
+    </div>
+  <%- end %>
+
+  <h6>WSDL URL: <%=@savon[:wsdl] %></h6>
+  <%= form_tag admin_shapco_settings_path, method: :put do %>
+    <div class="row">
+      <div class="col-md-12">
+        <fieldset class="no-border-bottom">
+          <legend><%= Spree.t(:shapco_api_credentials)%></legend>
+          <%- @credential_fields.each do |key| %>
+            <%- type = Spree::Config.preference_type(key) %>
+            <div class="form-group">
+              <%= label_tag(key, Spree.t(key)) + tag(:br) if type != :boolean %>
+              <%= preference_field_tag(key, Spree::Config[key], type: type) %>
+              <%= label_tag(key, Spree.t(key)) + tag(:br) if type == :boolean %>
+            </div>
+          <% end %>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="form-buttons" data-hook="buttons">
+      <%= button Spree.t('actions.update'), 'refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t('actions.cancel'), edit_admin_shapco_settings_url, icon: 'delete' %>
+    </div>
+  <% end %>
+
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <%- if @shipping_categories %>
+        Shapco sync is enabled for the following shipping categories:
+        <ul>
+          <%- @shipping_categories.each do |cat| %>
+            <li><%= link_to cat.name, edit_admin_shipping_category_path(cat) %></li>
+          <%- end %>
+        </ul>
+      <%- else %>
+        Shapco sync is not enabled for any shipping categories.&nbsp;
+      <%- end %>
+      Enable Shapco sync on the <%=link_to 'shipping categories admin page', admin_shipping_categories_path %>.
+    </div>
+  </div>
+</div>
+
+
