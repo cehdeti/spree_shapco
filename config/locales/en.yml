@@ -8,6 +8,7 @@ en:
 
     shapco_settings: Shapco Settings
     shapco_api_credentials: API Credentials
+    shapco_url_prefix: URL Prefix
     shapco_username: Username
     shapco_password: Password
     shapco_subscriber_id: Subscriber ID

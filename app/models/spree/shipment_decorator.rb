@@ -28,7 +28,7 @@ Spree::Shipment.class_eval do
   def do_send_to_shapco
     serialized = as_shapco
     logger.info("Sending shipment: #{serialized}")
-    response = Shapco::Order.create(serialized)
+    response = SpreeShapco.client.create_order(serialized)
     (response.body[:int32] == SHAPCO_SUCCESS_RESPONSE).tap do |success|
       logger.error("Error creating shipment: #{response.body}") unless success
     end

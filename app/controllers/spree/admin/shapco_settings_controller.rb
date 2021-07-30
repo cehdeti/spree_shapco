@@ -2,6 +2,7 @@ module Spree
   module Admin
     class ShapcoSettingsController < Spree::Admin::BaseController
       CREDENTIAL_FIELDS = [
+        :shapco_url_prefix,
         :shapco_username,
         :shapco_password,
         :shapco_subscriber_id
@@ -32,7 +33,6 @@ module Spree
       def set_fields
         @credential_fields = CREDENTIAL_FIELDS
         @fields = @credential_fields.freeze
-        @savon = ThreePLCentral.savon_config
       end
 
       def set_shipping_categories
