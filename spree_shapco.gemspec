@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   spree_version = '>= 3.1.0', '< 4.0'
   s.add_dependency 'spree_core', spree_version
-  s.add_dependency 'httparty', '~> 0.0.1'
+  s.add_dependency 'httparty'
 
   s.add_development_dependency 'capybara', '~> 2.6'
   s.add_development_dependency 'database_cleaner'
