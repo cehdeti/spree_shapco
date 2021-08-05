@@ -14,6 +14,25 @@ Spree::Shipment.class_eval do
 
   def as_shapco
     {
+      shipping_mode: "Ground",
+      payment_method_name: "Pay On Account",
+      customer_details: {
+        "customers_name": order.name,
+        "customers_company": "",
+        "customers_street_address1": order.address1,
+        "customers_street_address2": order.address2,
+        "customers_street_address3": "",
+        "customers_city": order.city,
+        "customers_postcode": order.zipcode,
+        "customers_state": order.state,
+        "customers_country": order.country,
+        "customers_telephone": "",
+        "customers_extrafield": "",
+        "customers_email_address": order.email,
+        "customers_first_name": order.firstname,
+        "customers_last_name": order.lastname,
+        "customers_corporate_name": ""
+      },
       product_details: {
         items: {
             item: manifest.map do |item|
