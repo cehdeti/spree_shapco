@@ -1,15 +1,18 @@
 Spree::Address.class_eval do
   def as_shapco
-    name = "#{firstname} #{lastname}"
-
     {
-      name: name,
-      company_name: company || name || "None",
-      phone_number1: phone,
-      address: {
-        address1: address1, address2: address2, city: city, state: state.abbr,
-        zip: zipcode, country: country.name
-      }
+      name: "#{firstname} #{lastname}",
+      company: company || 'None',
+      street_address1: address1,
+      street_address2: address2,
+      city: city,
+      postcode: zipcode,
+      state: state.abbr,
+      country: country.iso,
+      telephone: phone,
+      first_name: firstname,
+      last_name: lastname,
+      corporate_name: company || 'None',
     }
   end
 end

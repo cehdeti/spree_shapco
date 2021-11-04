@@ -1,4 +1,4 @@
-module Spree3PLCentral
+module SpreeShapco
   module Generators
     class InstallGenerator < Rails::Generators::Base
 

@@ -6,8 +6,6 @@ module SpreeShapco
 
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.after_initialize { SpreeShapco.init_client! }
-
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec

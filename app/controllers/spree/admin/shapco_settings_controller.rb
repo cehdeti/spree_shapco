@@ -2,10 +2,11 @@ module Spree
   module Admin
     class ShapcoSettingsController < Spree::Admin::BaseController
       CREDENTIAL_FIELDS = [
-        :shapco_url_prefix,
+        :shapco_url_slug,
         :shapco_username,
         :shapco_password,
-        :shapco_subscriber_id
+        :shapco_subscriber_id,
+        :shapco_customer_id
       ].freeze
 
       before_action :set_fields, :set_shipping_categories
@@ -19,14 +20,9 @@ module Spree
         end
 
         SpreeShapco.reset!
-        @error = SpreeShapco.client
 
-        if @error
-          render :edit
-        else
-          flash[:success] = Spree.t(:successfully_updated, resource: Spree.t(:shapco_settings))
-          redirect_to edit_admin_shapco_settings_path
-        end
+        flash[:success] = Spree.t(:successfully_updated, resource: Spree.t(:shapco_settings))
+        redirect_to edit_admin_shapco_settings_path
       end
 
       private
