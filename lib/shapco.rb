@@ -3,7 +3,6 @@ require 'httparty'
 class Shapco
   include HTTParty
   base_uri 'https://www.shapcoinsight.com/api'
-  debug_output
 
   def initialize(url_slug, username, password, subscriber_id)
     @url_slug = url_slug
@@ -20,8 +19,6 @@ class Shapco
     )
     JSON.parse(response.body)
   end
-
-  private
 
   def token
     response = self.class.post(

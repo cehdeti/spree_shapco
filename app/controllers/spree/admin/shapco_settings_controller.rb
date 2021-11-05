@@ -19,10 +19,14 @@ module Spree
           Spree::Config[name] = value if Spree::Config.has_preference? name
         end
 
-        SpreeShapco.reset!
-
-        flash[:success] = Spree.t(:successfully_updated, resource: Spree.t(:shapco_settings))
-        redirect_to edit_admin_shapco_settings_path
+        begin
+          SpreeShapco.client.token
+          flash[:success] = Spree.t(:successfully_updated, resource: Spree.t(:shapco_settings))
+          redirect_to edit_admin_shapco_settings_path
+        rescue
+          @error = 'Invalid credentials'
+          render :edit
+        end
       end
 
       private
