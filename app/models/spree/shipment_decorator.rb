@@ -19,7 +19,7 @@ Spree::Shipment.class_eval do
     {
       orders_id: order.id,
       order_number: order.number,
-      shipping_mode: 'Ground',
+      shipping_mode: address.country.iso == 'CA' ? 'CanStd' : 'Ground',
       payment_method_name: 'Pay On Account',
       orders_due_date: order.created_at,
       total_weight: manifest.sum do |item|
