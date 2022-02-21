@@ -3,9 +3,9 @@ Spree::Address.class_eval do
     {
       name: "#{firstname} #{lastname}",
       company: company.presence || 'None',
-      street_address1: address1,
-      street_address2: address2,
+      street_address: "#{address1}, #{address2}",
       city: city,
+      suburb: city,
       postcode: zipcode,
       state: state.abbr,
       country: country.iso,
