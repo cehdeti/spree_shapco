@@ -36,7 +36,7 @@ Spree::Order.class_eval do
           {
             orders_products_id: variant.id.to_s,
             products_name: variant.shapco_name || variant.name,
-            products_desc: variant.name,
+            products_desc: variant.shapco_name || variant.name,
             products_sku: "#{Spree::Config.shapco_customer_id}-#{variant.shapco_item_id}",
             item_client_id: variant.sku,
             products_quantity: quantity,
