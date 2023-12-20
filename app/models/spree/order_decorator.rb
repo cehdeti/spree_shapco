@@ -35,7 +35,7 @@ Spree::Order.class_eval do
         items: manifest.each_pair.map do |variant, quantity|
           {
             orders_products_id: variant.id.to_s,
-            products_name: variant.name,
+            products_name: variant.shapco_name || variant.name,
             products_desc: variant.name,
             products_sku: "#{Spree::Config.shapco_customer_id}-#{variant.shapco_item_id}",
             item_client_id: variant.sku,
