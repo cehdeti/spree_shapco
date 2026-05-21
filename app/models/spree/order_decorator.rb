@@ -18,7 +18,7 @@ Spree::Order.class_eval do
     {
       orders_id: id,
       order_number: number,
-      shipping_mode: shipping_address.country.iso == 'CA' ? 'CanStd' : 'Ground',
+      shipping_mode: shipping_address.country.iso == 'CA' ? 'CanStd' : 'GS',
       payment_method_name: 'Pay On Account',
       orders_due_date: created_at,
       total_weight: manifest.sum { |(variant, quantity)| variant.weight * quantity },
